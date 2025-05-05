@@ -6,10 +6,24 @@ dotenv.config();
 
 const app = express();
 
-app.get("/", (req, res) => {
+app.post("/products", async(req, res) => {
+    const product = req.body; //user will send product data in the body
 
-console.log(process.env.MANGO_URI);
+    if (!product.name || !product.price || !product.image) {
+        return res.status(400).json({ success:false, message: "Please provide all fields" });
+    }
 
+    const newProduct =  new Product(product);
+
+    try {
+        await newProduct.save();
+        res.status(201).json({ success: true, data: newProduct});
+    } catch (error) {
+        console.error("Error in creating product:", error.message);
+        res.status(500).json({success: false, message: "Server error"})
+
+    }
+    
 });
 
  app.listen(3000, () => {
