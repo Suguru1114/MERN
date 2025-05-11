@@ -1,6 +1,6 @@
-import mangoose from 'mangoose';
+import mongoose from 'mongoose';
 
-const productSchema = new mangoose.Schema({
+const productSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -17,7 +17,7 @@ const productSchema = new mangoose.Schema({
     timestamps: true
 });
 
-const Product = mangoose.nodel('Product', productSchema);
+const Product = mongoose.model('Product', productSchema);
 //why its not products insted Product
 
 export default Product;
