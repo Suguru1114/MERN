@@ -12,7 +12,7 @@ const app = express();
 
 app.use(express.json());//allows us to use json data in the body of the request(req.body)
 
-app.use("/api/producs", productRoute);
+app.use("/api/products", productRoute); 
 
  app.listen(3000, () => {
     connectDB();
